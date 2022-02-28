@@ -1,4 +1,4 @@
-# Prisoners-Dilemma
+## Prisoners-Dilemma
  The Prisoners Dilemma.
  
 Uses the config.json to allow for limited modification to the program quickly and 'easily'.
