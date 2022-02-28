@@ -1,0 +1,49 @@
+{
+  "evan override": true,
+  "#COMMENT number of players will modify itself depending on specified number of players at bottom": "",
+  "number of players": 4,
+  "#COMMENT": "-1 means that it will assume there is no limit, anything less will be interpreted the same, anything above is a valid input, 0 would mean that there is none that will be recorded, example memory = 0 means there will be no memory.",
+  "#COMMENT memory": "memory is for the number of games that will be remembered for the next move.",
+  "memory": 5,
+  "depth": 2,
+  "iterations": 25,
+
+  "punishments": {
+    "0 defect": {"cooperation": 1},
+    "1 defect": {"cooperation": 10, "defection": 0},
+    "all defect": {"defection": 5}
+  },
+  "rewards": {
+    "0 defect": {"cooperation": 3},
+    "1 defect": {"cooperation": 2, "defection": 8},
+    "2 defect": {"cooperation": 1, "defection": 6},
+    "3 defect": {"cooperation": 0, "defection": 4},
+    "all defect": {"defection": 1}
+  },
+
+  "#COMMENT player strategy": {
+    "NO TOUCHING THIS SECTION, WON'T DO ANYTHING": "",
+    "game styles": {
+      "exhaustive search": "es",
+      "tit for tat": "tft",
+      "tit for two tat": "tf2t",
+      "suspicious tit for tat": "stft",
+      "free rider": "alld",
+      "always cooperate": "allc"
+    }
+
+  },
+  "#COMMENT number of defections needs to be an integer [1, number of players), it is for tft and tf2t stuff to dictate the number of defections needed to take place before they will also defect ": "",
+  "#COMMENT number of defections having 0 means that it will assume all others need to defect before the player in question will.": "",
+  "number of defections": 1,
+  "players": {
+    "player 1": "es",
+    "player 2": "tft",
+    "player 3": "stft",
+    "player 4": "tf2t"
+  },
+
+  "multi process": true,
+  "default strategy": "es"
+
+}
