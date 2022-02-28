@@ -1,10 +1,18 @@
 """
-This runs mainly like this
+This runs mainly like this.
 main.py (will use fileOpener.py here to read and modify the config.json file)
 PrisonersDilemma.py
 Strategy.py
 StrategyList (will be whatever is injected into Strategy)
-score_calculate
+score_calculate.py
+
+It should be modifiable to an extent though considering how much I was messing around with this, I wouldn't be surprised if there were plenty of bugs hidden away.
+
+Name Prisoners Dilemma
+Developer: Evan Morrison
+Version: 1.0.1
+Since: 1.0.0
+
 """
 
 
@@ -40,6 +48,8 @@ def main():
     config = fileOpener.getConfig()
     PD = setup_game(config)
     PD.run()
+    for prisoner in PD.prisoners:
+        print(f"{prisoner.nameOfStrategy}: \t{prisoner.allMoves}")
     calculateAverages(PD, config)
 
 

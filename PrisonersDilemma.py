@@ -15,7 +15,7 @@ class PrisonersDilemma:
 
                 for num, prisoner in enumerate(self.prisoners):
                     prisoner.newMemory(moves[num])
-                    print(f"{prisoner.nameOfStrategy}: \t{prisoner.allMoves}")
+                    # print(f"{prisoner.nameOfStrategy}: \t{prisoner.allMoves}")
         else:
             while True:
                 moves = []
@@ -24,4 +24,4 @@ class PrisonersDilemma:
 
                 for num, prisoner in enumerate(self.prisoners):
                     prisoner.newMemory(moves[num])
-                    print(f"{prisoner.nameOfStrategy}: \t{prisoner.allMoves}")
+                    # print(f"{prisoner.nameOfStrategy}: \t{prisoner.allMoves}")
