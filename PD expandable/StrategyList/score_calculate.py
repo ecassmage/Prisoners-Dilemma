@@ -1,7 +1,7 @@
 def getJsonFile(FileInfo):
     if FileInfo is None:
-        import fileOpener
-        return fileOpener.getConfig()
+        import FileOpener
+        return FileOpener.getConfig()
     return FileInfo
 
 

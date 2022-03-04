@@ -1,14 +1,14 @@
-import json
-import os
-
-
 def getConfig(keepComments=False) -> dict:
+    import json
+    import os
     filename = ''
-    for file in os.listdir():
+
+    for file in os.listdir(os.path.dirname(os.path.abspath(os.curdir))):
         if len(file) > 5 and file[-5:] == ".json":
             filename = file
             break
     else:
+        raise FileNotFoundError("a .json file was not located")
         exit()
 
     try:
@@ -30,10 +30,10 @@ def __cleaningJSON(jsonFile, keepComments):
     jsonFile['punishments'].update({f"{jsonFile['number of players']} defect": jsonFile['punishments'][f"all defect"]})
     jsonFile['rewards'].pop(f"all defect")
     jsonFile['punishments'].pop(f"all defect")
+    jsonFile['exhaustive settings'] = jsonFile.get('exhaustive settings', {"exhaustive settings": {}})
     if jsonFile['number of defections'] == 0:
         print("You broke the number of defections rule")
         exit()
-
 
 
 def __removeComments(jsonFile):

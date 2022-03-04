@@ -5,8 +5,8 @@
   "#COMMENT": "-1 means that it will assume there is no limit, anything less will be interpreted the same, anything above is a valid input, 0 would mean that there is none that will be recorded, example memory = 0 means there will be no memory.",
   "#COMMENT memory": "memory is for the number of games that will be remembered for the next move.",
   "memory": 5,
-  "depth": 2,
-  "iterations": 25,
+  "depth": 5,
+  "iterations": 32,
 
   "punishments": {
     "0 defect": {"cooperation": 1},
@@ -15,8 +15,8 @@
   },
   "rewards": {
     "0 defect": {"cooperation": 3},
-    "1 defect": {"cooperation": 2, "defection": 8},
-    "2 defect": {"cooperation": 1, "defection": 6},
+    "1 defect": {"cooperation": 0, "defection": 5},
+    "2 defect": {"cooperation": 1, "defection": 1},
     "3 defect": {"cooperation": 0, "defection": 4},
     "all defect": {"defection": 1}
   },
@@ -35,7 +35,7 @@
   },
   "#COMMENT number of defections needs to be an integer [1, number of players), it is for tft and tf2t stuff to dictate the number of defections needed to take place before they will also defect ": "",
   "#COMMENT number of defections having 0 means that it will assume all others need to defect before the player in question will.": "",
-  "number of defections": 1,
+  "number of defections": 2,
   "players": {
     "player 1": "es",
     "player 2": "tft",

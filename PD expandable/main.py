@@ -19,7 +19,7 @@ Since: 1.0.0
 from StrategyList import exhaustive_search, tit_for_tat, tit_for_two_tat, suspicious_tit_for_tat, score_calculate
 import PrisonersDilemma
 import Strategy
-import fileOpener
+import FileOpener
 
 
 def getFunctionCall(string: str):
@@ -44,8 +44,22 @@ def calculateAverages(PD, config):
     pass
 
 
+def test(config):
+    string = 'DCDDDDDDCDDCDCDCCDCDDCDDCDDDCCCDDDCCCCDCCDCCDDDDDCCDCDDCCCDDDCCC'
+    string2 = ''
+    for char in string:
+        string2 += 'D' if char == 'C' else 'C'
+    values = score_calculate.calculateValues(string, string2, config=config)
+    print(values)
+
+
+# def printMath(x, y, z):
+#     print(f"{x} + ({y} * {z}) == ({x} + {y}) * ({x} + {z}) == {(x + (y * z))**0 == ((x + y) * (x + z))**0}")
+
+
 def main():
-    config = fileOpener.getConfig()
+    config = FileOpener.getConfig()
+
     PD = setup_game(config)
     PD.run()
     for prisoner in PD.prisoners:
