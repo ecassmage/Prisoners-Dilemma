@@ -3,7 +3,7 @@
 
   "memory": 5,
   "depth": 6,
-  "iterations": 1000,
+  "iterations": 200,
 
   "rewards": {
     "0 defect": {"cooperation": 3},
@@ -19,17 +19,19 @@
       "tit for two tat": "tf2t",
       "suspicious tit for tat": "stft",
       "free rider": "alld",
-      "always cooperate": "allc"
+      "always cooperate": "allc",
+      "average C": "avgc",
+      "average D": "avgd",
+      "random": "rand"
     }
 
   },
-  "player 2": "stft",
+  "player 2": "tf2t",
 
 
   "es settings": {
-    "default state": "D",
-    "testing the water": 100,
-    "wrong guess punishment": 1
+    "default state": "C",
+    "testing the water": "CCDCDDCDDDCDCDCDCDCDCDCCDCDDDDCDCDCDCCDDCDCDCDCCDCDCDCDCDCDCDDDCDCDCDCDCDCDCDCDCDCCDCDCDCDCDCDCDCCDCDDCDCCCCDDCDCDCDCDCC"
   }
 
 }

@@ -4,7 +4,7 @@ Been using this for probably a year at this point, just changing it slightly whe
 
 Name: Prisoners Dilemma, Exhaustive Search w/ basic neural network
 Developer: Evan Morrison
-Version 1.0.0
+Version 1.0.1
 Since 1.0.0
 """
 
@@ -19,17 +19,19 @@ def getConfig(keepComments=False) -> dict:
     import os
     filename = ''
 
-    for file in os.listdir(os.path.dirname(os.path.abspath(os.curdir))):
+    for file in os.listdir(os.path.abspath(os.curdir)):
         if len(file) > 5 and file[-5:] == ".json":
             filename = file
             break
     else:
         raise FileNotFoundError("a .json file was not located")
-
     try:
-        file = open(os.path.abspath(os.curdir) + '\\' + filename)
+        file = open(filename)
     except FileNotFoundError:
-        file = open(os.path.dirname(os.path.abspath(os.curdir)) + '\\' + filename)
+        try:
+            file = open(os.path.abspath(os.curdir) + '\\' + filename)
+        except FileNotFoundError:
+            file = open(os.path.dirname(os.path.abspath(os.curdir)) + '\\' + filename)
 
     jsonFile = json.load(file)
     file.close()

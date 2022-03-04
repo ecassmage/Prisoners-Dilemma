@@ -5,7 +5,7 @@ Will utilize the config.json file to set some things up and can be modified.
 
 Name: Prisoners Dilemma, Exhaustive Search w/ basic neural network
 Developer: Evan Morrison
-Version 1.0.0
+Version 1.0.1
 Since 1.0.0
 """
 
@@ -32,6 +32,29 @@ class Exhaustive:
 
         self.nextMove = ''
         self.other_nextMove = ''
+
+        self.waterTesting = self.config['es settings']['testing the water']
+
+    def run(self):
+        """
+        This runs the entire iteration.
+        Will first check if program is still in the testing phase and will then move on to if it will just pick randomly or if it will attempt to predict the opponents next move.
+        :return: returns the chosen character whether it be C or D
+        """
+        scores = []
+        if len(self) < (self.waterTesting if type(self.waterTesting) is int else len(self.waterTesting)):
+            if type(self.waterTesting) is int:
+                return random.choice(['C', 'D'])
+            else:
+                return self.waterTesting[len(self)]
+
+        for combination in exhaustive_search(depth=self.config['depth'], returnType=str):
+            scoreReceived, expectedNextMove = self.likelyHoodOfUsage(combination)
+            scores.append([scoreReceived, combination, expectedNextMove])
+
+        bestTemp = max(scores, key=lambda x: x[0])
+        self.verificationOfCorrectness = bestTemp[2]
+        return bestTemp[1][0]
 
     def addRoundMemory(self, self_choice, others_choice):
         """
@@ -68,25 +91,6 @@ class Exhaustive:
         if cleanup_behind and len(self.others_memory) > self.config['memory'] > -1:
             self.others_memory.pop(0)
 
-    def run(self):
-        """
-        This runs the entire iteration.
-        Will first check if program is still in the testing phase and will then move on to if it will just pick randomly or if it will attempt to predict the opponents next move.
-        :return: returns the chosen character whether it be C or D
-        """
-        scores = []
-
-        if len(self) < self.config['es settings']['testing the water']:
-            return random.choice(['C', 'D'])
-
-        for combination in exhaustive_search(depth=self.config['depth'], returnType=str):
-            scoreReceived, expectedNextMove = self.likelyHoodOfUsage(combination)
-            scores.append([scoreReceived, combination, expectedNextMove])
-
-        bestTemp = max(scores, key=lambda x: x[0])
-        self.verificationOfCorrectness = bestTemp[2]
-        return bestTemp[1][0]
-
     def __changeWeights(self):
         """
         an internal method which will run other methods to determine weight changes.
@@ -94,7 +98,7 @@ class Exhaustive:
         :return: returns nothing.
         """
         # and len(self) >= self.config['es settings']['testing the water']
-        if len(self.others_memory) > 0  and self.verificationOfCorrectness != self.others_memory[-1]:
+        if len(self.others_memory) > 0 and (self.waterTesting > len(self) if type(self.waterTesting) is int else len(self.waterTesting) > len(self)) and self.verificationOfCorrectness != self.others_memory[-1]:
             self.lowerWeights()
         self.collectPatterns()
 
@@ -103,6 +107,8 @@ class Exhaustive:
         Lowers the Exhaustive search' weights given that if it gets here, then it predicted incorrectly.
         :return: returns nothing.
         """
+        # if self.verificationOfCorrectness is None:
+        #      return
         joinedMem = ''.join(self.memory)
         for pos in range(2, len(self.memory) + 1):
             self.patternWeights[f"{joinedMem[len(self.memory) - pos:]}_{self.verificationOfCorrectness}"] = self.patternWeights.get(f"{joinedMem[len(self.memory) - pos:]}_{self.verificationOfCorrectness}", 0) - 1
@@ -147,10 +153,10 @@ class Exhaustive:
 
             stringGenerated += 'C' if likely_hood_of_choosing_character > 0 else self.config['es settings']["default state"] if likely_hood_of_choosing_character == 0 else 'D'
             string_generated_likely_hood_value += sigmoid(abs(likely_hood_of_choosing_character)) * likely_hood_of_choosing_character_value
+        score = self.calculate_score(string, stringGenerated)
+        return score, stringGenerated[0]
 
-        return self.__calculate_score(string, stringGenerated) * string_generated_likely_hood_value, stringGenerated[0]
-
-    def __calculate_score(self, selfString, otherString):
+    def calculate_score(self, selfString: str, otherString: str):
         """
         calculates the score of this pairing of moves.
         Score is based on weights from config.json
@@ -162,7 +168,6 @@ class Exhaustive:
         score = 0
         for index in range(len(min([selfString, otherString], key=len))):  # why find the smallest despite them supposed to be the same size, Dunno.
             score += self.config['rewards'][f"{(selfString[index], otherString[index]).count('D')} defect"]['cooperation' if selfString[index] == 'C' else 'defection']
-            pass
         return score
 
     def __len__(self):
