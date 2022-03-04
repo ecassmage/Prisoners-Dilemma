@@ -1,0 +1,35 @@
+{
+  "debug": true,
+
+  "memory": 5,
+  "depth": 6,
+  "iterations": 1000,
+
+  "rewards": {
+    "0 defect": {"cooperation": 3},
+    "1 defect": {"cooperation": 0, "defection": 5},
+    "all defect": {"defection": 1}
+  },
+
+  "#COMMENT player strategy": {
+    "NO TOUCHING THIS SECTION, WON'T DO ANYTHING": "",
+    "game styles": {
+      "exhaustive search": "es",
+      "tit for tat": "tft",
+      "tit for two tat": "tf2t",
+      "suspicious tit for tat": "stft",
+      "free rider": "alld",
+      "always cooperate": "allc"
+    }
+
+  },
+  "player 2": "stft",
+
+
+  "es settings": {
+    "default state": "D",
+    "testing the water": 100,
+    "wrong guess punishment": 1
+  }
+
+}
