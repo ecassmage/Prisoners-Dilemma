@@ -4,13 +4,13 @@ Runs the program. Already setup to do the task.
 
 Name: Prisoners Dilemma, Exhaustive Search w/ basic neural network
 Developer: Evan Morrison
-Version 1.0.1
+Version 1.1.0
 Since 1.0.0
 """
 
 
 import FileOpener
-from strategies import tit_for_tat, tit_for_two_tat, suspicious_tit_for_tat
+from strategies import tit_for_tat, tit_for_two_tat, suspicious_tit_for_tat, always_cooperate, free_rider, average_c, average_d, random_play
 import Exhaustive
 
 
@@ -20,7 +20,7 @@ def getFunction(string):
     :param string: takes a string which identifies which strategy will be needed.
     :return: returns the function requested.
     """
-    return {'tft': tit_for_tat.tft, 'tf2t': tit_for_two_tat.tf2t, 'stft': suspicious_tit_for_tat.stft}[string]
+    return {'tft': tit_for_tat.tft, 'tf2t': tit_for_two_tat.tf2t, 'stft': suspicious_tit_for_tat.stft, 'allc': always_cooperate.allc, 'alld': free_rider.alld, 'avgc': average_c.avgc, 'avgd': average_d.avgd, 'rand': random_play.rand_play}[string]
 
 
 def printScore(exhaustiveSearch, config):

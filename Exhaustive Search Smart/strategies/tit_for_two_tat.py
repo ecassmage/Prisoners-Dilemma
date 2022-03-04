@@ -4,7 +4,7 @@ tit for two tat. The functions of choosing the next character. I know, very comp
 
 Name: Prisoners Dilemma, Exhaustive Search w/ basic neural network
 Developer: Evan Morrison
-Version 1.0.1
+Version 1.1.0
 Since 1.0.0
 """
 

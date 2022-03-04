@@ -4,7 +4,7 @@ Been using this for probably a year at this point, just changing it slightly whe
 
 Name: Prisoners Dilemma, Exhaustive Search w/ basic neural network
 Developer: Evan Morrison
-Version 1.0.1
+Version 1.1.0
 Since 1.0.0
 """
 

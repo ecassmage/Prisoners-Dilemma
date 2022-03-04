@@ -3,7 +3,7 @@
 
   "memory": 5,
   "depth": 6,
-  "iterations": 200,
+  "iterations": 1000,
 
   "rewards": {
     "0 defect": {"cooperation": 3},
@@ -26,12 +26,12 @@
     }
 
   },
-  "player 2": "tf2t",
+  "player 2": "avgd",
 
 
   "es settings": {
-    "default state": "C",
-    "testing the water": "CCDCDDCDDDCDCDCDCDCDCDCCDCDDDDCDCDCDCCDDCDCDCDCCDCDCDCDCDCDCDDDCDCDCDCDCDCDCDCDCDCCDCDCDCDCDCDCDCCDCDDCDCCCCDDCDCDCDCDCC"
+    "default state": "D",
+    "testing the water": 500
   }
 
 }

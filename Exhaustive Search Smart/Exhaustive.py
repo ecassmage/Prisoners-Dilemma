@@ -5,7 +5,7 @@ Will utilize the config.json file to set some things up and can be modified.
 
 Name: Prisoners Dilemma, Exhaustive Search w/ basic neural network
 Developer: Evan Morrison
-Version 1.0.1
+Version 1.1.0
 Since 1.0.0
 """
 
